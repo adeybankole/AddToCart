@@ -14,11 +14,14 @@ public class HomePage extends BasePage{
         super(driver);
     }
     protected Actions actions;
+    @FindBy (xpath = "//div[@id='block_top_menu']/ul/li[2]/a[@title='Dresses']") WebElement dressesButton;
+    @FindBy (xpath = "//div[@id='center_column']/ul/li[2]/div[@class='product-container']//div[@class='product-image-container']/a[@title='Printed Dress']/img[@alt='Printed Dress']") WebElement mostExpensive;
     @FindBy(id = "search_query_top") WebElement searchBox;
     @FindBy (css = ".button-search") WebElement searchButton;
     @FindBy (css = "#center_column > ul > li.ajax_block_product.col-xs-12.col-sm-6.col-md-4.first-in-line.first-item-of-tablet-line.first-item-of-mobile-line > div > div.right-block > div.button-container > a.button.ajax_add_to_cart_button.btn.btn-default > span") WebElement addToCartButton;
     @FindBy(css = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a > span")
     WebElement proceedToCheckoutButton;
+    @FindBy (xpath = "//div[@id='center_column']/ul/li[2]/div[@class='product-container']//a[@title='Add to cart']/span[.='Add to cart']") WebElement addToCartButton2;
     WebDriverWait wait = new WebDriverWait(driver, 10);
 
    public WebElement waitForElementToBeClickable(WebElement element){
@@ -52,5 +55,17 @@ public class HomePage extends BasePage{
     }
 
 
+    public HomePage clickDressesMenu() {
+       dressesButton.click();
+       return PageFactory.initElements(driver, HomePage.class);
+    }
 
+    public CartPage addMostExpensiveDressToCart() {
+        Actions actions = new Actions(driver);
+        WebElement dressToAdd2 = driver.findElement(By.xpath("//div[@id='center_column']/ul/li[2]/div[@class='product-container']//div[@class='product-image-container']/a[@title='Printed Dress']/img[@alt='Printed Dress']"));
+        actions.moveToElement(dressToAdd2).perform();
+        waitForElementToBeClickable(addToCartButton2).click();
+        return PageFactory.initElements(driver, CartPage.class);
+
+    }
 }
