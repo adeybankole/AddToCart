@@ -1,6 +1,6 @@
 About The Project (http://automationpractice.com/index.php)
 
-Automated java test to verify that summer dresses can be added to the cart and it's possible to proceed to the Sign in page (on Chrome browser)
+Automated java test to verify that the most expensive dress has been added to cart(on Chrome browser)
 
 ARCHITECTURE
 Maven
